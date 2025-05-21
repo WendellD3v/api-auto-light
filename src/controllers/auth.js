@@ -6,40 +6,6 @@ const myKey = process.env.JWT_SECRET_KEY;
 
 const authModels = require('../models/auth');
 
-// const login = async (req, res) => {
-//     const connect = await connection
-//     if (connect){
-        
-//         try {
-//             const [users] = await connect.query('SELECT * FROM usuarios WHERE login = ?', [req.body.login])
-
-//             console.log(req.body.password)
-//             console.log(users[0]['senha'])
-//             if (users.length > 0){
-                
-//                 const isPasswordValid = await bcrypt.compare(req.body.password, users[0]['senha'])
-//                 if (!isPasswordValid){
-//                     return res.status(400).json({message: 'Senha Incorreta'})
-//                 } else{
-//                     const token = jwt.sign({userID: users[0]['id']}, myKey, {
-//                         "expiresIn": "1h"
-//                     })
-
-//                     return res.status(200).json({token: token})
-//                 }
-                
-                
-//             } else{
-//                 return res.status(400).json({message: 'Usuário não encontrado'})
-//             }
-//         } catch (error) {
-//             console.log('Erro ao procurar o usuário:', error)
-//         }
-//     } else{
-//         console.log('Banco de dados não conectado')
-//     }
-// }
-
 const login = async (req, res) => {
     const userAccount = await authModels.getUserAccount(req.body.login)
     if (userAccount){
