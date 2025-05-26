@@ -12,8 +12,14 @@ app.use(cors())
 app.use(express.json())
 
 // rotas
-const auth = require('./src/routes/auth')
-app.use('/auth', auth)
+const accounts = require('./src/routes/accounts')
+app.use('/account', accounts)
+
+const logs = require('./src/routes/logs')
+app.use('/logs', logs)
+
+const movements = require('./src/routes/movements');
+app.use('/movements', movements)
 
 // Banco De Dados
 require('./src/utils/connection')
