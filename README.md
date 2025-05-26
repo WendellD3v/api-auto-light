@@ -190,13 +190,6 @@ Sequência recomendada para testes:
 
 ---
 
-## 🏆 Avaliação
-
-Este projeto foi entregue como substitutivo de prova na faculdade, com foco na aplicação prática dos conhecimentos e simulação de integração real entre sistemas mobile e back-end.  
-**Nota obtida: 10/10** 🎓
-
----
-
 ## 📌 Observações
 
 - Procedures e triggers do banco foram desenvolvidas para automatizar registros e integridade dos dados (não incluídas aqui, mas presumivelmente disponíveis na pasta `/database`).
