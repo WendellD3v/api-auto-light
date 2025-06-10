@@ -70,6 +70,7 @@ A aplicação utiliza autenticação via **JWT**. Rotas protegidas exigem o envi
   ```json
   {
     "name": "Wendell Dev",
+    "email": "example@gmail.com",
     "login": "wendell022",
     "password": "12345678"
   }
