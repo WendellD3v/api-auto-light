@@ -28,7 +28,7 @@ const register = async (req, res) => {
     
     try {
         const hashPass = await bcrypt.hash(req.body.password, 8)
-        const user = await accountsModels.addUser(req.body.name, req.body.login, hashPass)
+        const user = await accountsModels.addUser(req.body.name, req.body.email, req.body.login, hashPass)
         if (user.status == 'SUCCESS') {
 
             const token = jwt.sign({userID: user.insertID}, myKey, {

@@ -1,8 +1,8 @@
 const { account } = require('../middleware/accounts');
 const connection = require('../utils/connection');
 
-const addUser = async (name, user, pass) => {
-    const [result] = await connection.query('CALL create_user(?, ?, ?)', [name, user, pass]);
+const addUser = async (name, email, user, pass) => {
+    const [result] = await connection.query('CALL create_user(?, ?, ?, ?)', [name, email, user, pass]);
     return result[0][0]
 };
 
