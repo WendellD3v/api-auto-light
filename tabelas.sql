@@ -164,9 +164,12 @@ BEGIN
     IF registros_count > 0 THEN
         SELECT 'ERROR' AS status, 'Você precisa apagar os registros do usuário para realizar está ação' AS message;
     ELSE        
+
         DELETE FROM usuarios WHERE id = p_id;
 
         SELECT 'SUCCESS' AS status, 'Usuário Deletado Com Sucesso' AS message;
+
+
     END IF;
 END$$
 
@@ -335,22 +338,62 @@ DELIMITER ;
 DELIMITER $$
 
 CREATE TRIGGER userDeleted
-AFTER DELETE ON usuarios
+BEFORE DELETE ON usuarios
 FOR EACH ROW
 BEGIN
 
-    CALL add_log(
+    INSERT INTO logs(
+        tp_reg,
+        id_usuario,
+        dt_acao,
+        hr_acao,
+        ds_reg
+    ) VALUES (
+        'D',
         old.id,
+        CURDATE(),
+        CURTIME(),
         CONCAT(
             'Usuário deletado: ',
             old.nome,
             '[',
             old.id,
             ']'
-        ),
-        'D'
+        )
     );
 
 END$$
+
+DELIMITER ;
+
+SET GLOBAL event_scheduler = ON;
+
+DELIMITER $$
+
+CREATE EVENT count_logs
+ON SCHEDULE EVERY 5 MINUTE DO
+BEGIN
+    DECLARE counter_log INT;
+
+    SELECT COUNT(*) INTO counter_log FROM logs WHERE dt_acao = CURDATE();
+
+    INSERT INTO logs(
+        tp_reg,
+        id_usuario,
+        dt_acao,
+        hr_acao,
+        ds_reg
+    ) VALUES (
+        'I',
+        0,
+        CURDATE(),
+        CURTIME(),
+        CONCAT(
+            counter_log,
+            ' Logs foram realizados no sistema até o momento'
+        )
+    );
+
+END $$
 
 DELIMITER ;
