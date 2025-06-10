@@ -162,16 +162,18 @@ A aplicação utiliza autenticação via **JWT**. Rotas protegidas exigem o envi
 Crie um arquivo `.env` na raiz do projeto com as seguintes variáveis:
 
 ```env
+# Conexão Do Servidor
+SERVER_PORT=5000
+
 # Conexão com o banco de dados
-DB_HOST=localhost
-DB_PORT=3306
-DB_USER=root
-DB_PASSWORD=sua_senha
-DB_NAME=nome_do_banco
+MYSQL_HOST=localhost
+MYSQL_PORT=3306
+MYSQL_USER=root
+MYSQL_PASS= senha do banco de dados
+MYSQL_DATABASE= nome do banco de dados
 
 # JWT
-JWT_SECRET=sua_chave_secreta
-JWT_EXPIRES_IN=1d
+JWT_SECRET_KEY=sua key
 ```
 
 > ⚠️ Nunca compartilhe seu `.env` real publicamente. O arquivo `.env` deve estar no `.gitignore`.
@@ -202,3 +204,4 @@ Sequência recomendada para testes:
 Desenvolvido por Wendell Gabriel • Projeto Acadêmico  
 📧 Email: [wendell9293@gmail.com]  
 🛒 [Cyber Scripts](https://www.cyberscripts.com.br/)
+📦 [Wendell_D3v](http://wendell.cyberscripts.com.br/)
